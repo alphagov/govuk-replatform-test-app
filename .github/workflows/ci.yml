@@ -13,3 +13,14 @@ jobs:
     steps:
       - name: Always true
         run: echo "runs"
+      - name: Always false
+        run: |
+          echo "error"
+          exit 1
+      - if: ${{ failure() }}
+        uses: alphagov/govuk-ci-github-action/@test
+        with:
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          channel: test-ci
+          github: ${{ toJson(github) }}
+  
