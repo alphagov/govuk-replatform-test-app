@@ -1,8 +1,11 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    bootsnap (1.23.0)
+      msgpack (~> 1.2)
     daemons (1.4.1)
     eventmachine (1.2.7)
+    msgpack (1.8.0)
     prometheus_exporter (2.1.0)
       webrick
     rack (2.2.23)
@@ -23,6 +26,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bootsnap
   prometheus_exporter
   rack
   thin
