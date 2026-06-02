@@ -24,9 +24,7 @@ $body_message += "End ENV_MESSAGEs.\n"
 puts("GOVUK replatform test app - #{$install_id}\n#{$body_message}")
 
 Dir['messages/*'].each do |filename|
-    file = File.open(filename)
-    filedata = file.read
-    file.close
+    filedata = File.read(filename)
     $body_message += "#{filedata}\n"
     puts("#{$install_id} - #{filedata}")
 end
@@ -47,7 +45,8 @@ class RackApp
       end
     else
       qs = Rack::Utils.parse_nested_query query
-      status = qs["status"] || 400
+      # Rack 3 requires status to be an Integer
+      status = (qs["status"] || 400).to_i
 
       if !req.head?
         body = "Version: #{$install_id}. Hello, the time is #{Time.now}, you requested a #{qs["status"]} status response"
@@ -58,7 +57,8 @@ class RackApp
       duration = Time.now.to_f - start
       $http_request_duration_seconds.observe(duration, action: 'test', status: status, install_id: $install_id)
     end
-    [status, {"Content-Type" => "text/plain"}, [$body_message, body]]
+    # Rack 3 requires lowercase response header keys
+    [status, {"content-type" => "text/plain"}, [$body_message, body]]
   end
 end
 
