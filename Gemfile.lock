@@ -5,7 +5,7 @@ GEM
       msgpack (~> 1.2)
     daemons (1.4.1)
     eventmachine (1.2.7)
-    msgpack (1.8.0)
+    msgpack (1.8.2)
     prometheus_exporter (2.1.0)
       webrick
     rack (2.2.23)
