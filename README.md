@@ -26,4 +26,4 @@ docker build -t govuk-replatform-test-app .
 docker run --rm -p3000:3000 -p9394:9394 govuk-replatform-test-app
 ```
 
-You should then be able to browse the web app on http://localhost:3000/ and the Prometheus metrics on http://localhost:9394/metrics.
+You should then be able to browse the web app on http://localhost:3000/ and the Prometheus metrics on http://localhost:9394/metrics...
